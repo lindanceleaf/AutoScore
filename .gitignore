@@ -1,0 +1,22 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# IDE/Editor settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+desktop.ini
+
+# Virtual environment
+autoScoreEnv/
+
+# Data files
+*.csv
+*.json
+
