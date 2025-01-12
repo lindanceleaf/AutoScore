@@ -24,3 +24,7 @@ class Sheet_Contest(TypedDict):
 
 class Selected_Mapping(TypedDict):
     col: List[str]
+
+class Problem(TypedDict):
+    problem_id: str
+    problem_name: str

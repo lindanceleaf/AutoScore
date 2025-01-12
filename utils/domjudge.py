@@ -1,6 +1,6 @@
 import requests
 from typing import List
-from models.types import Team, Contest, Scoreboard, Student
+from models.types import Team, Contest, Scoreboard, Student, Problem
 from config import JUDGE_URL, AUTH
 
 def get_team_data() -> List[Team]:
@@ -70,3 +70,15 @@ def score_mapping(scoreboard_data: List[Scoreboard], student_data: List[Student]
                 student["score"] = score["score"]
                 break
     return student_data
+
+def get_contest_problems(contest_id: str) -> List[Problem]:
+    """
+    從 DOMjudge API 獲取指定比賽的所有題目 ID。
+    :param contest_id: 比賽 ID
+    :return: 題目 ID 的列表
+    """
+    url = f"{JUDGE_URL}/api/contests/{contest_id}/problems"
+    response = requests.get(url, auth=AUTH)
+    response.raise_for_status()
+    problems = response.json()
+    return [{"problem_id": problem["id"], "problem_name": problem["short_name"]} for problem in problems]

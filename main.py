@@ -3,7 +3,7 @@ from utils.google_sheet import get_student_list, get_sheet_contest, write_score,
 from utils.tkinter_ui import create_mapping_window
 
 def main():
-    table_list = ['測試1']
+    table_list = ['程式設計總成績']
     team_data = get_team_data()
     contest_data = get_contest_data()
 

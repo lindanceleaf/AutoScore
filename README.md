@@ -56,23 +56,31 @@ SHEET_ID 則是
 ## 使用方式
 
 1. 要先確保Google sheet內長成這個樣子
-![alt text](images/sheetPattern.png)
-A2 是姓名, B2 是學號, 總分, 隨後就是你要打分數項目
+   ![alt text](images/sheetPattern.png)
+   A2 是姓名, B2 是學號, 總分, 隨後就是你要打分數項目
 
 學生匯入的部分可以使用 getStudent.py
 配合eCourse2 下載的學生資料(.csv結尾)
 就可自動填入所有學生名字及學號
 
 2. 選擇比賽與欄位映射
-當執行main.py 之後會彈出一個圖形化界面（Tkinter），讓你選擇 DOMjudge 比賽與 Google Sheet 欄位的對應關係
-完成選擇後，點擊 提交。
-
+   當執行main.py 之後會彈出一個圖形化界面（Tkinter），讓你選擇 DOMjudge 比賽與 Google Sheet 欄位的對應關係
+   完成選擇後，點擊 提交。
 3. 自動更新分數
-提交後，工具將執行以下操作：
+   提交後，工具將執行以下操作：
+
 - 獲取 DOMjudge 的比賽數據與積分榜。
 - 解析數據並與學生名單進行映射。
 - 將比賽分數自動更新到對應的 Google Sheet 欄位中。
 
+## 下載題本
+如果期末評鑑資料要繳交時，可使用Download_Problem.py 來下載題本
+執行後會跳出視窗，選擇你要下載的 Contest 後就會自動下載了
+選擇時可多選
+下載後就會存放在根目錄的 Problem 資料夾內
+
 ## 聯絡方式
+
 如有任何問題或建議，請聯絡：
+
 - **Email**: lindanceleaf@gmail.com

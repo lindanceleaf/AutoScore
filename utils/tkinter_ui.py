@@ -1,6 +1,7 @@
 import tkinter as tk
+from tkinter import ttk
 from models.types import Contest, Sheet_Contest, Selected_Mapping
-from typing import List, Dict
+from typing import List
 
 def create_mapping_window(contest_data: List[Contest], sheet_contest: List[Sheet_Contest]) -> Selected_Mapping:
     """
@@ -66,3 +67,49 @@ def create_mapping_window(contest_data: List[Contest], sheet_contest: List[Sheet
     root.mainloop()
     
     return selected_mapping
+
+def create_selector_window(contests: List[Contest]) -> List[Contest]:
+    def submit_selection():
+        nonlocal selected_contests
+        selected_indices = listbox.curselection()
+        selected_contests = [contests[idx] for idx in selected_indices]
+        root.destroy()
+
+    # 創建主視窗
+    root = tk.Tk()
+    root.title("Contest Selector")
+    root.geometry("500x400")
+    selected_contests = []
+
+    # 樣式設置
+    style = ttk.Style()
+    style.theme_use("clam")
+    style.configure("TLabel", font=("Helvetica", 14), padding=10)
+    style.configure("TButton", font=("Helvetica", 12), padding=5)
+    style.configure("TListbox", font=("Helvetica", 12), padding=5)
+
+    # 標題
+    title_label = ttk.Label(root, text="請選擇比賽：")
+    title_label.pack(pady=10)
+
+    # 創建帶滾動條的 Listbox
+    frame = ttk.Frame(root)
+    frame.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+
+    scrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+    listbox = tk.Listbox(frame, selectmode="extended", font=("Helvetica", 12), width=50, height=10, yscrollcommand=scrollbar.set)
+    listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+    scrollbar.config(command=listbox.yview)
+
+    # 填充 Listbox
+    for contest in contests:
+        listbox.insert(tk.END, contest['contest_name'])
+
+    # 提交按鈕
+    submit_button = ttk.Button(root, text="提交", command=submit_selection)
+    submit_button.pack(pady=20)
+
+    root.mainloop()
+    return selected_contests
